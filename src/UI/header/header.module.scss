@@ -1,0 +1,33 @@
+@import "@/scss/abstract.scss";
+
+.header {
+  @include flex(row, space-between, center);
+  height: 64px;
+  min-height: 64px;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.logo {
+  @include flex(row, center, center);
+  font-family: $font-bold;
+  font-size: 1.325rem;
+  color: $color-dark;
+}
+
+.logoImg {
+  font-size: 1.75rem;
+  margin-right: 6px;
+}
+
+.user {
+  @include flex(row, center, center);
+  height: 40px;
+  width: 40px;
+}
+
+.userImg {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}

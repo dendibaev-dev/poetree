@@ -7,10 +7,12 @@ import {
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import Header from "@/UI/header";
 import Footer from "@/UI/footer";
 
 const Home = lazy(() => import("./home"));
 const Dashboard = lazy(() => import("./dashboard"));
+const Profile = lazy(() => import("./profile"));
 
 const Routes = () => {
   const auth = useSelector(({ user }) => user.isAuth);
@@ -19,9 +21,11 @@ const Routes = () => {
   if (auth) {
     routes = (
       <>
+        <Header />
         <Switch>
           <Route exact path="/" component={Dashboard} />
-          <Redirect to="/" />
+          <Route path="/profile" component={Profile} />
+          <Redirect to="/profile" />
         </Switch>
         <Footer />
       </>

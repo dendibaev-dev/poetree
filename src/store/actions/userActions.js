@@ -1,12 +1,25 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
 
 // ***CHECK USER IS AUTH***
 export const authed = createAsyncThunk("user/check-auth", (_, { dispatch }) => {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      dispatch(authSuccess({ ...user.providerData[0] }));
+      const id = user.providerData[0].uid;
+
+      firebase
+        .firestore()
+        .collection("users")
+        .doc(id)
+        .get()
+        .then((doc) =>
+          doc.exists
+            ? dispatch(authSuccess(doc.data()))
+            : dispatch(authFailed())
+        )
+        .catch(() => dispatch(authFailed()));
     } else {
       dispatch(authFailed());
     }
@@ -23,7 +36,7 @@ export const sign = createAsyncThunk("user/sign", (signType, { dispatch }) => {
     .signInWithPopup(signType === "google" ? providerGoogle : providerGithub)
     .then((result) => dispatch(authSuccess({ ...result.user.providerData[0] })))
     .catch((error) => {
-      alert(error.message);
+      console.log(error.message);
       return dispatch(authFailed());
     });
 });
