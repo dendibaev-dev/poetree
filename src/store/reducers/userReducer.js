@@ -6,8 +6,13 @@ const initialState = {
 };
 
 const user = createReducer(initialState, {
-  [actions.authSuccess]: (state) => ({ ...state, isAuth: true }),
+  [actions.authSuccess]: (state, action) => ({
+    ...state,
+    isAuth: true,
+    ...action.payload,
+  }),
   [actions.authFailed]: (state) => ({ ...state, isAuth: false }),
+  [actions.signOut]: (state) => ({ ...state, isAuth: false }),
 });
 
 export default user;

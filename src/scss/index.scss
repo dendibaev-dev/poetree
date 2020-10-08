@@ -10,7 +10,8 @@
 
 html,
 body,
-#root {
+#root,
+section {
   height: 100%;
   width: 100%;
 }
@@ -19,9 +20,20 @@ body {
   background: $color-gray;
   font-family: $font-reg;
   font-size: 14px;
-  color: $color-primary;
+  color: $color-dark;
 }
 
 #root {
   @include flex(column, center, center);
+}
+
+input,
+button {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
 }

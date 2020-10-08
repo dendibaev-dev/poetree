@@ -1,6 +1,17 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import cls from "./dashboard.module.scss";
 
+import { signOut } from "@/store/actions/userActions";
+
 export default function Dashboard() {
-  return <div className={cls.dashboard}>Dashboard</div>;
+  const dispatch = useDispatch();
+  const displayName = useSelector(({ user }) => user.displayName);
+
+  return (
+    <div className={cls.dashboard}>
+      <h2>Hello {displayName}</h2>
+      <button onClick={() => dispatch(signOut())}>Sign out</button>
+    </div>
+  );
 }
