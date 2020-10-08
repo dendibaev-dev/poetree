@@ -9,9 +9,9 @@ export default function Dashboard() {
   const displayName = useSelector(({ user }) => user.displayName);
 
   return (
-    <div className={cls.dashboard}>
+    <section className={cls.dashboard}>
       <h2>Hello {displayName}</h2>
       <button onClick={() => dispatch(signOut())}>Sign out</button>
-    </div>
+    </section>
   );
 }

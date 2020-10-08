@@ -1,0 +1,5 @@
+@import "@/scss/abstract.scss";
+
+.dashboard {
+  @include flex(column, center, center);
+}

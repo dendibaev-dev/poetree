@@ -27,6 +27,11 @@ body {
   @include flex(column, center, center);
 }
 
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+
 input,
 button {
   background: transparent;
