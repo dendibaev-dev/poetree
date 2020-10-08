@@ -1,16 +1,25 @@
-import React, { Suspense, lazy } from "react";
+import React, { useCallback, useEffect, Suspense, lazy } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authed } from "@/store/actions/userActions";
 
 const Home = lazy(() => import("./home"));
 const Dashboard = lazy(() => import("./dashboard"));
 
 const Routes = () => {
-  const auth = false;
+  const dispatch = useDispatch();
+  const stableDispatch = useCallback(dispatch, []);
+
+  useEffect(() => {
+    stableDispatch(authed());
+  }, [stableDispatch]);
+
+  const auth = useSelector(({ user }) => user.isAuth);
   let routes;
 
   if (auth) {
