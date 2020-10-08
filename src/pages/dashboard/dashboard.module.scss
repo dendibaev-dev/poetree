@@ -1,5 +1,69 @@
 @import "@/scss/abstract.scss";
 
 .dashboard {
-  @include flex(column, center, center);
+  @include flex(column, flex-start, center);
+}
+
+.post {
+  @include flex(column, space-between);
+  height: 120px;
+  width: 90%;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border: 2px solid $color-silver;
+  border-radius: 8px;
+  transition: box-shadow 0.25s ease;
+
+  &:hover {
+    box-shadow: 0 3px 6px rgba($color-black, 0.175);
+  }
+}
+
+.author {
+  @include flex(row, flex-start, center);
+}
+
+.authorImg {
+  height: 24px;
+  width: 24px;
+  margin-right: 6px;
+  border-radius: 50%;
+}
+
+.authorName {
+  font-size: 1rem;
+}
+
+.text {
+  flex-grow: 1;
+  width: 100%;
+  padding: 8px 0;
+}
+
+.panel {
+  @include flex(row, space-between, center);
+  width: 100%;
+}
+
+.like {
+  @include flex(row, flex-start, center);
+  color: $color-dark;
+  cursor: pointer;
+  transition: color 0.25s ease;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.likeIcon {
+  margin-right: 4px;
+}
+
+.time {
+  background: $color-silver;
+  font-size: 0.725rem;
+  padding: 2px 4px;
+  text-align: center;
+  border-radius: 4px;
 }
