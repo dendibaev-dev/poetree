@@ -1,5 +1,27 @@
+@import "~normalize.css";
+@import "./abstract.scss";
+@import "./fonts.scss";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background: $color-gray;
+  font-family: $font-reg;
+  font-size: 14px;
+  color: $color-primary;
+}
+
+#root {
+  @include flex(column, center, center);
 }

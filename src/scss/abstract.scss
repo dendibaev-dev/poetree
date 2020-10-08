@@ -1,0 +1,18 @@
+/* Fonts */
+$font-reg: "Avenir Next Cyr Regular";
+$font-bold: "Avenir Next Cyr Bold";
+/* Colors */
+$color-white: #ffffff;
+$color-gray: #eef0f1;
+$color-silver: #d2d6db;
+$color-primary: #3b49df;
+$color-dark: #0d122b;
+$color-black: #08090a;
+
+// Display Flex
+@mixin flex($direction: row, $justify: flex-start, $align: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
