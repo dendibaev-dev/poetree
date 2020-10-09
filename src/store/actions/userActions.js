@@ -34,9 +34,24 @@ export const sign = createAsyncThunk("user/sign", (signType, { dispatch }) => {
   firebase
     .auth()
     .signInWithPopup(signType === "google" ? providerGoogle : providerGithub)
-    .then((result) => dispatch(authSuccess({ ...result.user.providerData[0] })))
+    .then((result) => {
+      const user = {
+        id: result.additionalUserInfo.profile.id,
+        username: result.additionalUserInfo.profile.name,
+        picture: result.additionalUserInfo.profile.picture,
+        email: result.additionalUserInfo.profile.email,
+        posts: 0,
+      }
+
+      if(result.additionalUserInfo.isNewUser) {
+        firebase
+        .firestore().collection("users").doc(user.id).set({...user}).then(() => console.log("success")).catch(() => console.log("failed to write users"));
+      }
+
+      return dispatch(authSuccess(user))
+    })
     .catch((error) => {
-      console.log(error.message);
+      alert(error.message);
       return dispatch(authFailed());
     });
 });
