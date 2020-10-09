@@ -12,7 +12,8 @@ export default function Profile() {
     <section className={cls.profile}>
       <img src={user.picture} className={cls.img} alt="" />
       <h2 className={cls.username}>{user.username}</h2>
-      <p className={cls.id}>{user.id}</p>
+      <p className={cls.id}>id:{user.id}</p>
+      <p className={cls.email}>{user.email}</p>
       <p className={cls.posts}>У вас {user.posts} постов</p>
       <button className={cls.signOutBtn} onClick={() => dispatch(signOut())}>
         Выйти с аккаунта

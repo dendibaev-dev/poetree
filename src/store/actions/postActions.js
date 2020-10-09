@@ -20,3 +20,16 @@ export const fetchPostsSuccess = createAction(
   (post) => ({ payload: post })
 );
 export const fetchPostsFailed = createAction("posts/fetch/failed");
+
+export const sendPost = createAsyncThunk("posts/new-post", async (data, {dispatch}) => {
+  try {
+    await firebase
+    .firestore()
+    .collection("posts")
+    .add(data);
+  // return dispatch(authSuccess(user));
+  return ""
+  } catch(e){
+    console.log("failed failed ")
+  }
+})

@@ -22,8 +22,10 @@
 
 .user {
   @include flex(row, center, center);
+  background: $color-silver;
   height: 40px;
   width: 40px;
+  border-radius: 50%;
 }
 
 .userImg {

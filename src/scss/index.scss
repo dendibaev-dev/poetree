@@ -30,6 +30,7 @@ body {
 a {
   color: $color-primary;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 input,
@@ -37,6 +38,7 @@ button {
   background: transparent;
   border: none;
   outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {

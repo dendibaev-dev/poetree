@@ -3,9 +3,11 @@ import * as actions from "../actions/userActions";
 
 const initialState = {
   isAuth: null,
+  loading: false,
 };
 
 const user = createReducer(initialState, {
+  [actions.sign.pending]: (state) => ({...state, loading: true}),
   [actions.authSuccess]: (state, action) => ({
     ...state,
     isAuth: true,
