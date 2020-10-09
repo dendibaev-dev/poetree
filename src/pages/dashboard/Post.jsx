@@ -6,13 +6,13 @@ import cls from "./dashboard.module.scss";
 function Post({ author, text, likes, date }) {
   return (
     <div className={cls.post}>
-      <a href="/" className={cls.author}>
+      <a href={`/user/${author.id}`} className={cls.author}>
         <img
-          src="https://lh3.googleusercontent.com/a-/AOh14GjoL7I8ILs2ZyhGw5HoDJ6GPNBL4lkwC3wQu0lz"
+          src={author.picture}
           alt=""
           className={cls.authorImg}
         />
-        <h5 className={cls.authorName}>Dendibaev Arman</h5>
+        <h5 className={cls.authorName}>{author.username}</h5>
       </a>
       <p className={cls.text}>{text}</p>
       <div className={cls.panel}>

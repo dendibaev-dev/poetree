@@ -66,13 +66,23 @@ export const firstSign = createAsyncThunk("user/first-sign", async (user, {dispa
 export const authSuccess = createAction("user/auth/success", (user) => ({
   payload: { ...user },
 }));
-export const authFailed = createAction("user/auth/failed", (message) => {
-  // alert(message)
-  return ""
-});
+export const authFailed = createAction("user/auth/failed");
 
 // ***SIGN OUT***
 export const signOut = createAction("user/sign-out", () => {
   firebase.auth().signOut();
   return { payload: "success" };
 });
+
+
+export const plusUserState = createAsyncThunk("user/plus-post", async (userId) => {
+  try {
+    firebase
+        .firestore()
+        .collection("users")
+        .doc(userId)
+        .update({ posts: firebase.firestore.FieldValue.increment(1)})
+  } catch (e) {
+    console.log(e)
+  }
+})

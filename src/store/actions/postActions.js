@@ -2,6 +2,8 @@ import { createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import firebase from "firebase/app";
 import "firebase/firestore";
 
+import { plusUserState } from './userActions'
+
 export const fetchPosts = createAsyncThunk("posts/fetch", (_, { dispatch }) => {
   firebase
     .firestore()
@@ -26,8 +28,8 @@ export const sendPost = createAsyncThunk("posts/new-post", async (data, {dispatc
     await firebase
     .firestore()
     .collection("posts")
-    .add(data);
-  // return dispatch(authSuccess(user));
+    .add(data)
+    .then(() => dispatch(plusUserState(data.author.id)))
   return ""
   } catch(e){
     console.log("failed failed ")
