@@ -6,7 +6,7 @@
 
 .post {
   @include flex(column, space-between);
-  height: 120px;
+  min-height: 120px;
   width: 90%;
   margin-bottom: 12px;
   padding: 8px 12px;

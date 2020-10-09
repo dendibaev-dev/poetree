@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { AiOutlineHeart } from "react-icons/ai";
 import cls from "./dashboard.module.scss";
 
-export default function Post() {
+function Post({ author, text, likes, date }) {
   return (
     <div className={cls.post}>
       <a href="/" className={cls.author}>
@@ -13,18 +14,23 @@ export default function Post() {
         />
         <h5 className={cls.authorName}>Dendibaev Arman</h5>
       </a>
-      <p className={cls.text}>
-        By reading this tutorial, you'll learn how to end-to-end encrypt data in
-        web applications using nothing but JavaScript and the Web Crypto API,
-        which is a native browser API.
-      </p>
+      <p className={cls.text}>{text}</p>
       <div className={cls.panel}>
         <div className={cls.like}>
           <AiOutlineHeart className={cls.likeIcon} />
-          Понравилось
+          {likes ? likes : ""} Понравилось
         </div>
-        <div className={cls.time}>08 окт</div>
+        <div className={cls.time}>{date}</div>
       </div>
     </div>
   );
 }
+
+Post.propType = {
+  author: PropTypes.string,
+  text: PropTypes.string,
+  likes: PropTypes.number,
+  date: PropTypes.string,
+};
+
+export default Post;
